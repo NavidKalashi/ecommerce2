@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 def signup(request):
     if request.method == 'POST':
@@ -24,6 +25,21 @@ def signup(request):
     return render(request, 'authentication/signup.html')
     
 def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        pass1 = request.POST['pass1']
+
+        user = authenticate(username=username, password=pass1)
+
+        if user is not None:
+            login(request, user)
+            fname = user.first_name
+            return render(request, 'products/products.html', {'fname': fname})
+
+        else:
+            messages.error(request, 'bad credentials')
+            return redirect('products')
+        
     return render(request, 'authentication/login.html')
 
 def logout(request):
