@@ -5,39 +5,22 @@
 <h1>Products</h1>
 
 <ul>
-    <li style='background: black'>
-        <a href="">
-            <div>
-                <div class="image"></div>
-                <div class="about">
-                    <h5>watch</h5>
-                    <p>this is good</p>
-                </div>
-            </div>
-        </a>
-    </li>
+    <hr>
+    {% for product in products %}
     <li>
-        <a href="">
+        <a href="{% url 'product' product.id %}">
             <div>
                 <div class="image"></div>
                 <div class="about">
-                    <h5>Book</h5>
-                    <p>this is good</p>
+                    <h5>{{product.product_name}}</h5>
+                    <p>{{product.description}}</p>
+                    <p>${{product.price}}</p>
                 </div>
             </div>
         </a>
     </li>
-    <li>
-        <a href="">
-            <div>
-                <div class="image"></div>
-                <div class="about">
-                    <h5>laptop</h5>
-                    <p>this is good</p>
-                </div>
-            </div>
-        </a>
-    </li>
+    <hr>
+    {% endfor %}
 </ul>
 
 {% endblock content %}
