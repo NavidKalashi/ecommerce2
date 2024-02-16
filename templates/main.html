@@ -7,14 +7,10 @@
 </head>
 <body>
     <div>
-        {% if user.is_authenticated %}
-        <p>{{fname}}</p>
-        <a href="{% url 'logout' %}">Logout</a>
-        {% else %}
         <a href="{% url 'products' %}">Home</a>
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'signup' %}">signup</a>
-        {% endif %}
+        <a href="{% url 'login' %}">login/signup</a>
+        <a href="">logout</a>
+        <a href="{% url 'profile' %}">profile</a>
         <a href="">Grouping</a>
         <a href="">Best sellers</a>
     </div>
