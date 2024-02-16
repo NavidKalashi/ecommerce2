@@ -3,10 +3,12 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 
+from .forms import UserCreationForm
+
 def loginUser(request):
     page = 'login'
 
-    if request.is_authenticated:
+    if request.user.is_authenticated:
         return redirect('products') 
     if request.method == 'post':
         username = request.POST['username']
@@ -29,12 +31,24 @@ def loginUser(request):
 def registerUser(request):
     page = 'register'
 
-    
+    form = UserCreationForm
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            login(request, user)
+            return redirect('edit-account')
+        else:
+            return redirect('profiles')
+        
+    context = {'page': page, 'form': form}
     return render(request, 'users/login-register.html')
 
 def logoutUser(request):
     return redirect('logout')
 
-def profile(request, pk):
-    return render(request, 'users/user-profile.html')
+# def profile(request, pk):
+#     return render(request, 'users/user-profile.html')
 
