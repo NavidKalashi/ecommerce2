@@ -10,14 +10,14 @@
     <input type="submit" value="Register">
 </form>
 
-<p>have an account? <a href="{% url 'login' %}">Register</a></p>
+<p>have an account? <a href="{% url 'login' %}">Login</a></p>
 
 
 {% else %}
 
 <h1>login</h1>
 
-<form action="{% url 'login' %}" method='POST'>
+<form action="" method='POST'>
     {% csrf_token %}
     <input type="text" name="username" id="username"><br>   
     <input type="password" name="password" id="password">
