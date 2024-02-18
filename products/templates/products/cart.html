@@ -1,0 +1,11 @@
+{% extends "main.html" %}
+
+{% block content %}
+<h1>your cart</h1>
+
+{% for item in items %}
+<p>{{item}}</p>
+
+{% endfor %}
+
+{% endblock content %}

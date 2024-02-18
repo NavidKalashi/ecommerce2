@@ -3,5 +3,10 @@
 {% block content %}
 <h1>{{product.product_name}}</h1>
 <p>{{product.description}}</p>
+<p>{{product.price}}</p>
+
+{% if request.user.is_authenticated %}
+<button data-product={{product.id}} data-action='add'>add to cart</button>
+{% endif %}
 
 {% endblock content %}
