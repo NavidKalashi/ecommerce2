@@ -9,9 +9,9 @@
     <div>
         <a href="{% url 'products' %}">Home</a>
         {% if request.user.is_authenticated %}
-        <p>{{request.user}}</p>
         <a href="{% url 'logout' %}">logout</a>        
         <a href="{% url 'account' %}">account</a>
+        <p>Hello dear {{request.user}}</p>
         {% else %}
         <a href="{% url 'login' %}">login/signup</a>
         {% endif %}
