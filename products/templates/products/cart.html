@@ -4,8 +4,8 @@
 <h1>your cart</h1>
 
 {% for item in items %}
-<p>{{item}}</p>
-
+<p>{{item.product.price}}</p>
 {% endfor %}
+
 
 {% endblock content %}
